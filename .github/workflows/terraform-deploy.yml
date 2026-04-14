@@ -1,13 +1,4 @@
 name: Terraform Infra Deploy
-
-on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - '*.tf'
-      - '*.tfvars'
-      - 'modules/**'
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
