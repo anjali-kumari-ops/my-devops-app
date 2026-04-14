@@ -10,7 +10,6 @@ jobs:
 terraform:
 runs-on: ubuntu-latest
 
-```
 defaults:
   run:
     working-directory: terraform
@@ -40,4 +39,3 @@ steps:
 
   - name: Terraform Apply
     run: terraform apply -auto-approve
-```
