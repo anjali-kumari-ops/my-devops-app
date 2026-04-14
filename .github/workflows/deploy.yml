@@ -1,6 +1,10 @@
 name: Build, Push to ECR & Deploy to ECS
 
 on:
+  workflow_run:
+    workflows: ["Terraform Infra Deploy"]
+    types:
+      - completed
   push:
     branches: [ "main" ]
 
