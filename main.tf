@@ -49,7 +49,7 @@ module "ecs" {
   task_name    = "my-task"
   service_name = "my-service"
 
-  image_url = module.ecr.repository_url
+  image_url = module.ecr.ecr_repo_url
 
   execution_role_arn = aws_iam_role.ecs_execution_role.arn
 
