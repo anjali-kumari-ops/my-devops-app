@@ -1,4 +1,4 @@
-# from ECR Delete my-devops-app
+# ecsTaskExecutionRole deleted
 resource "aws_ecr_repository" "app" {
   name = "my-devops-app"
 }
