@@ -42,6 +42,25 @@ resource "aws_iam_role_policy_attachment" "ecs_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_security_group" "ecs_sg" {
+  name   = "ecs-sg"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 module "ecs" {
   source = "./modules/ecs"
 
@@ -49,9 +68,11 @@ module "ecs" {
   task_name    = "my-task"
   service_name = "my-service"
 
-  image_url = module.ecr.ecr_repo_url
+  image_url = "${module.ecr.ecr_repo_url}:latest"   
 
   execution_role_arn = aws_iam_role.ecs_execution_role.arn
 
   subnets = module.vpc.subnet_ids
+
+  security_groups = [aws_security_group.ecs_sg.id]   
 }
