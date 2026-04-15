@@ -1,4 +1,4 @@
-# repository with name 'my-devops-app deleted from AWS
+# ecsTaskExecutionRole deleted from IAM role
 resource "aws_ecr_repository" "app" {
   name = "my-devops-app"
 }
