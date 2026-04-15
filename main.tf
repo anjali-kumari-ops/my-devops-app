@@ -1,4 +1,4 @@
-# trigger
+# trigger the input
 provider "aws" {
   region = var.aws_region
 }
