@@ -1,3 +1,3 @@
-resource "aws_ecs_cluster" "main" {
-  name = "my-devops-cluster"
+resource "aws_ecr_repository" "app" {
+  name = "my-devops-app"
 }
