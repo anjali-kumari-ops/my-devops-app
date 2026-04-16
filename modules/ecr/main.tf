@@ -1,4 +1,4 @@
-# ecsTaskExecutionRole deleted
+# ecsTaskExecutionRole
 resource "aws_ecr_repository" "app" {
   name = "my-devops-app"
 }
