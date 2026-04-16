@@ -18,7 +18,7 @@ env:
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ contains(['success', 'skipped'], github.event.workflow_run.conclusion) }}
     runs-on: ubuntu-latest
 
     steps:

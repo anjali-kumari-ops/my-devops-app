@@ -76,3 +76,12 @@ module "ecs" {
 
   security_groups = [aws_security_group.ecs_sg.id]   
 }
+
+terraform {
+  backend "s3" {
+    bucket         = "s3-anjali"
+    key            = "dev/terraform.tfstate"
+    region         = "ap-south-1"
+
+  }
+}
