@@ -66,7 +66,7 @@ module "ecs" {
 
   cluster_name = "my-cluster"
   task_name    = "my-task"
-  service_name = "my-service"
+  service_name = "aws-learning"
 
   image_url = "${module.ecr.ecr_repo_url}:latest"   
 
