@@ -13,7 +13,7 @@ env:
   ECR_REPOSITORY: my-devops-app
   ECS_CLUSTER: my-ecs-cluster
   ECS_SERVICE: my-ecs-service
-  TASK_DEFINITION: task-definition.json
+  TASK_DEFINITION: modules/task-definition.json
   CONTAINER_NAME: my-devops-container
 
 jobs:

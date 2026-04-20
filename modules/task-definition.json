@@ -7,7 +7,7 @@
   "executionRoleArn": "arn:aws:iam::692967579858:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "name": "my-container",
+      "name": "my-devops-container",
       "image": "IMAGE_PLACEHOLDER",
       "portMappings": [
         {
