@@ -12,7 +12,7 @@ env:
   AWS_REGION: ap-south-1
   ECR_REPOSITORY: my-devops-app
   ECS_CLUSTER: my-ecs-cluster
-  ECS_SERVICE: my-ecs-service
+  ECS_SERVICE: aws-learning
   TASK_DEFINITION: modules/task-definition.json
   CONTAINER_NAME: my-devops-container
 
