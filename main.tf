@@ -1,4 +1,4 @@
-# trigger the input after main push+
+# trigger the input after main push
 provider "aws" {
   region = var.aws_region
 }
