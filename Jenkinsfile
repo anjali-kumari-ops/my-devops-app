@@ -3,17 +3,12 @@ pipeline {
 
     environment {
         AWS_REGION = 'ap-south-1'
-        ECR_REPO = 'your-ecr-repo'
+        ACCOUNT_ID = '123456789012'   
+        ECR_REPO = 'my-devops-app'    
         IMAGE_TAG = 'latest'
     }
 
     stages {
-
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/your-username/your-repo.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -21,11 +16,19 @@ pipeline {
             }
         }
 
-        stage('Login to AWS ECR') {
+        stage('Login to ECR') {
             steps {
                 sh '''
                 aws ecr get-login-password --region $AWS_REGION | \
-                docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.$AWS_REGION.amazonaws.com
+                docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+                '''
+            }
+        }
+
+        stage('Tag Image') {
+            steps {
+                sh '''
+                docker tag $ECR_REPO:$IMAGE_TAG $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:$IMAGE_TAG
                 '''
             }
         }
@@ -33,8 +36,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 sh '''
-                docker tag $ECR_REPO:$IMAGE_TAG <your-account-id>.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:$IMAGE_TAG
-                docker push <your-account-id>.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:$IMAGE_TAG
+                docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:$IMAGE_TAG
                 '''
             }
         }
@@ -43,8 +45,8 @@ pipeline {
             steps {
                 sh '''
                 aws ecs update-service \
-                --cluster your-cluster \
-                --service your-service \
+                --cluster my-cluster \
+                --service my-service \
                 --force-new-deployment
                 '''
             }
